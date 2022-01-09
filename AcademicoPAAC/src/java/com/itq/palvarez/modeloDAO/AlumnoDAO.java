@@ -70,17 +70,17 @@ public class AlumnoDAO {
         return alumnos;
     }
     
-    public boolean crearAlumno(Alumno p) {
+    public boolean crearAlumno(String cedula, String nombres, String apellidos, String direccion, int curso) {
         PreparedStatement pst = null;
         
         try {
             String sql = "insert into alumno (cedula, nombres, apellidos, direccion, curso)values(?,?,?,?,?)";
             pst = getConnection().prepareStatement(sql);
-            pst.setString(1, p.getCedula());
-            pst.setString(2, p.getNombres());
-            pst.setString(3, p.getApellidos());
-            pst.setString(4, p.getDireccion());
-            pst.setInt(5, p.getCurso());
+            pst.setString(1, cedula);
+            pst.setString(2, nombres);
+            pst.setString(3, apellidos);
+            pst.setString(4, direccion);
+            pst.setInt(5, curso);
             
             if (pst.executeUpdate() == 1) {
                 return true;

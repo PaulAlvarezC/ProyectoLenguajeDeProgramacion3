@@ -5,11 +5,13 @@
  */
 package com.itq.palvarez.controlador;
 
+import com.itq.palvarez.modeloDAO.MateriaDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,14 +36,15 @@ public class RegistrarMateria extends HttpServlet {
         
         System.out.println("SALIDA: " + valor + " " + descripcion + " " + curso);
         
-        /*Autenticacion login = new Autenticacion();
-        if(login.registrar(cedula, nombres, apellidos, usuario, password)){
+        MateriaDAO materia = new MateriaDAO();
+        if(materia.crearMateria(valor, descripcion, Integer.parseInt(curso))){
             HttpSession objsesion = request.getSession(true);
-            objsesion.setAttribute("usuario", usuario);
+            String mensaje = "Materia creada exitosamente!!!";
+            objsesion.setAttribute("mensaje", mensaje);
             response.sendRedirect("Controlador?accion=home");
         }else {
-            response.sendRedirect("vistas/error.jsp");
-        }*/
+            response.sendRedirect("error.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

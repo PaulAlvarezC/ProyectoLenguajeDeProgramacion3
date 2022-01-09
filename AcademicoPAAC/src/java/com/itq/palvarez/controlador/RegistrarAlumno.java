@@ -5,7 +5,7 @@
  */
 package com.itq.palvarez.controlador;
 
-import com.itq.palvarez.config.Autenticacion;
+import com.itq.palvarez.modeloDAO.AlumnoDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,14 +38,15 @@ public class RegistrarAlumno extends HttpServlet {
         
         System.out.println("SALIDA: " + cedula + " " + nombres + " " + apellidos + " " + direccion + " " + curso);
         
-        /*Autenticacion login = new Autenticacion();
-        if(login.registrar(cedula, nombres, apellidos, usuario, password)){
+        AlumnoDAO alumno = new AlumnoDAO();
+        if(alumno.crearAlumno(cedula, nombres, apellidos, direccion, Integer.parseInt(curso))){
             HttpSession objsesion = request.getSession(true);
-            objsesion.setAttribute("usuario", usuario);
+            String mensaje = "Alumno creado exitosamente!!!";
+            objsesion.setAttribute("mensaje", mensaje);
             response.sendRedirect("Controlador?accion=home");
         }else {
             response.sendRedirect("vistas/error.jsp");
-        }*/
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
