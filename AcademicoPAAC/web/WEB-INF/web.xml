@@ -5,10 +5,6 @@
         <servlet-class>com.itq.palvarez.controlador.Controlador</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ControladorIMG</servlet-name>
-        <servlet-class>com.itq.palvarez.controlador.ControladorIMG</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>com.itq.palvarez.controlador.Login</servlet-class>
     </servlet>
@@ -17,16 +13,24 @@
         <servlet-class>com.itq.palvarez.controlador.RegistrarUsuario</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CrearProducto</servlet-name>
-        <servlet-class>com.itq.palvarez.controlador.CrearProducto</servlet-class>
+        <servlet-name>RegistrarAlumno</servlet-name>
+        <servlet-class>com.itq.palvarez.controlador.RegistrarAlumno</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarCurso</servlet-name>
+        <servlet-class>com.itq.palvarez.controlador.RegistrarCurso</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarMateria</servlet-name>
+        <servlet-class>com.itq.palvarez.controlador.RegistrarMateria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarNotas</servlet-name>
+        <servlet-class>com.itq.palvarez.controlador.RegistrarNotas</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControladorIMG</servlet-name>
-        <url-pattern>/ControladorIMG</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -37,8 +41,20 @@
         <url-pattern>/RegistrarUsuario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CrearProducto</servlet-name>
-        <url-pattern>/CrearProducto</url-pattern>
+        <servlet-name>RegistrarAlumno</servlet-name>
+        <url-pattern>/RegistrarAlumno</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarCurso</servlet-name>
+        <url-pattern>/RegistrarCurso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarMateria</servlet-name>
+        <url-pattern>/RegistrarMateria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarNotas</servlet-name>
+        <url-pattern>/RegistrarNotas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
