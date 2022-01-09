@@ -21,33 +21,30 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg" style="background-color: deepskyblue;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Controlador?accion=home">Sistema Académico PAAC</a>
+                <a class="navbar-brand" href="Controlador?accion=home"  style="color: white;">Sistema Académico PAAC</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Controlador?accion=home">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Controlador?accion=Register">Alumnos</a>
+                            <a class="nav-link active" aria-current="page" href="Controlador?accion=home"  style="color: white;">Inicio</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Bienvenido <% out.println(usuario); %></a>
+                            <a class="nav-link" href="Controlador?accion=Perfil"  style="color: white;">Bienvenido <% out.println(usuario); %></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="color: white;">
                                 Configuraciones
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="Controlador?accion=MisProductos">Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="Controlador?accion=Perfil"  style="color: black;">Mi Perfil</a></li>
                                 <li><hr class="dropdown-divider"></li>                                
-                                <li><a class="dropdown-item" href="Controlador?accion=CerrarSesion">Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="Controlador?accion=CerrarSesion"  style="color: black;">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -74,12 +71,12 @@
                                     <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" aria-label="Apellidos" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario" aria-label="Usuario" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control" name="direccion" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="input-group mb-3">                        
-                                    <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control" name="curso" placeholder="Curso" aria-label="Curso" aria-describedby="basic-addon1" required>
                                 </div>
-                                <input type="submit" class="btn btn-primary" value="Registrar"/>
+                                <input type="submit" class="btn btn-primary" value="Agregar"/>
                             </div>
                         </form>
                     </div>

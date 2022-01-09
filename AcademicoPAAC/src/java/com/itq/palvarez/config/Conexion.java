@@ -20,7 +20,7 @@ public class Conexion {
     
     public static Connection getConnection(){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(URL, USER, PASS);
             System.out.println("Conexion: " + con);
         } catch (Exception e) {

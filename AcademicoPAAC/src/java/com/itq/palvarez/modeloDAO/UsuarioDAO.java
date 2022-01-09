@@ -10,6 +10,7 @@ import com.itq.palvarez.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -36,7 +37,7 @@ public class UsuarioDAO {
                 c.setUsuario(rs.getString(5));
                 c.setPassword(rs.getString(6));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("Error: " + e);
         }
         return c;

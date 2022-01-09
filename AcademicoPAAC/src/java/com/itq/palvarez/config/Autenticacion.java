@@ -8,6 +8,8 @@ package com.itq.palvarez.config;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.itq.palvarez.modelo.Usuario;
+
 /**
  *
  * @author paul.alvarez
@@ -17,6 +19,7 @@ public class Autenticacion extends Conexion{
     public boolean autenticacion(String user, String password){
         PreparedStatement ps = null;
         ResultSet rs = null;
+        Usuario c = new Usuario();
         
         try {
             String sql = "select * from usuario where usuario = ? and password = ?";
@@ -25,7 +28,7 @@ public class Autenticacion extends Conexion{
             ps.setString(2, password);
             rs = ps.executeQuery();
             
-            if(rs.absolute(1)){
+            while (rs.next()) {
                 return true;
             }
         } catch (Exception e) {

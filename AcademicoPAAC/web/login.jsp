@@ -14,9 +14,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg" style="background-color: deepskyblue;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Sistema Académico PAAC</a>
+                <a class="navbar-brand" href="login.jsp" style="color: white;">Sistema Académico PAAC</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -45,7 +45,7 @@
                                 <div class="input-group mb-3">                        
                                     <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
                                 </div>
-                                <input type="submit" class="btn btn-primary" value="Login"/>
+                                <input type="submit" class="btn btn-primary" value="Login" style="background-color: deepskyblue;"/>
                                 <div>
                                     <br>
                                     <label>No tienes una cuenta? <a href="Controlador?accion=Register">Regístrate</a></label>

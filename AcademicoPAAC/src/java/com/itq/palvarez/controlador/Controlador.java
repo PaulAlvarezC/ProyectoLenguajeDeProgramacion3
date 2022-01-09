@@ -38,13 +38,40 @@ public class Controlador extends HttpServlet {
             case "Register":
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 break;
+            case "AgregarUsuario":
+                request.getRequestDispatcher("usuario.jsp").forward(request, response);
+                break;
             case "AgregarAlumno":
                 request.getRequestDispatcher("alumno.jsp").forward(request, response);
+                break;
+            case "AgregarCurso":
+                request.getRequestDispatcher("curso.jsp").forward(request, response);
+                break;
+            case "AgregarMateria":
+                request.getRequestDispatcher("materia.jsp").forward(request, response);
+                break;
+            case "AgregarNota":
+                request.getRequestDispatcher("registrarNotas.jsp").forward(request, response);
+                break;
+            case "ListaAlumnos":
+                request.getRequestDispatcher("listaAlumnos.jsp").forward(request, response);
+                break;
+            case "ListaCursos":
+                request.getRequestDispatcher("listaCursos.jsp").forward(request, response);
+                break;
+            case "ListaMaterias":
+                request.getRequestDispatcher("listaMaterias.jsp").forward(request, response);
+                break;
+            case "ListaNotas":
+                request.getRequestDispatcher("listaNotas.jsp").forward(request, response);
+                break;
+            case "Perfil":
+                request.getRequestDispatcher("perfil.jsp").forward(request, response);
                 break;
             case "CerrarSesion":
                 HttpSession objsesion = request.getSession(true);
                 objsesion.setAttribute("usuario", "");
-                request.getRequestDispatcher("Controlador?accion=home").forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
                 break;
             default:
                 request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -21,33 +21,30 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg" style="background-color: deepskyblue;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Controlador?accion=home">Sistema Académico</a>
+                <a class="navbar-brand" href="Controlador?accion=home"  style="color: white;">Sistema Académico PAAC</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Controlador?accion=home">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Controlador?accion=AgregarAlumno">Alumnos</a>
+                            <a class="nav-link active" aria-current="page" href="Controlador?accion=home"  style="color: white;">Inicio</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Bienvenido <% out.println(usuario); %></a>
+                            <a class="nav-link" href="Controlador?accion=Perfil"  style="color: white;">Bienvenido <% out.println(usuario); %></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="color: white;">
                                 Configuraciones
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="Controlador?accion=MisProductos">Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="Controlador?accion=Perfil"  style="color: black;">Mi Perfil</a></li>
                                 <li><hr class="dropdown-divider"></li>                                
-                                <li><a class="dropdown-item" href="Controlador?accion=CerrarSesion">Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="Controlador?accion=CerrarSesion"  style="color: black;">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -56,7 +53,71 @@
         </nav>
         <div class="container mt-2">
             <div class="row">
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Agregar Alumno</h5>
+                        <p class="card-text">Aquí puedes agregar o registrar Usuarios Estudiantes.</p>
+                        <a href="Controlador?accion=AgregarAlumno" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Agregar Curso</h5>
+                        <p class="card-text">Aquí puedes agregar o crear Cursos.</p>
+                        <a href="Controlador?accion=AgregarCurso" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Agregar Materia</h5>
+                        <p class="card-text">Aquí puedes agregar o registrar Materias.</p>
+                        <a href="Controlador?accion=AgregarMateria" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Lista Alumnos</h5>
+                        <p class="card-text">Aquí podras ver la lista de todos los Usuarios Estudiantes.</p>
+                        <a href="Controlador?accion=ListaAlumnos" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
                 
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Lista Cursos</h5>
+                        <p class="card-text">Aquí podras ver la lista de todos los Cursos.</p>
+                        <a href="Controlador?accion=ListaCursos" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Lista Materias</h5>
+                        <p class="card-text">Aquí podras ver la lista de todos las Materias.</p>
+                        <a href="Controlador?accion=ListaMaterias" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Registrar Notas</h5>
+                        <p class="card-text">Aquí podras registrar las notas de los Estudiantes.</p>
+                        <a href="Controlador?accion=AgregarNota" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Lista de Notas</h5>
+                        <p class="card-text">Aquí podras ver la lista de Notas por Alumno.</p>
+                        <a href="Controlador?accion=ListaNotas" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 30%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Agregar Usuario Sistema</h5>
+                        <p class="card-text">Aquí podras ver registrar usuarios tipo Docentes al Sistema.</p>
+                        <a href="Controlador?accion=AgregarUsuario" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
             </div>
         </div>
 
