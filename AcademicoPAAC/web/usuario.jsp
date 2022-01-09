@@ -59,7 +59,7 @@
                         <div class="card-header">
                             Agregar Usuario
                         </div>
-                        <form action="AgregarUsuario" method="post">
+                        <form action="RegistrarUsuario" method="post">
                             <div class="card-body">
                                 <div class="input-group mb-3">                        
                                     <input type="text" class="form-control" name="cedula" placeholder="Cédula" aria-label="Cédula" aria-describedby="basic-addon1" required>

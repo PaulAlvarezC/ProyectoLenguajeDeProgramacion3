@@ -59,7 +59,7 @@
                         <div class="card-header">
                             Agregar Materia
                         </div>
-                        <form action="AgregarMateria" method="post">
+                        <form action="RegistrarMateria" method="post">
                             <div class="card-body">
                                 <div class="input-group mb-3">                        
                                     <input type="text" class="form-control" name="valor" placeholder="Valor" aria-label="Valor" aria-describedby="basic-addon1" required>

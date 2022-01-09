@@ -59,7 +59,7 @@
                         <div class="card-header">
                             Registrar Notas
                         </div>
-                        <form action="AgregarNota" method="post">
+                        <form action="RegistrarNotas" method="post">
                             <div class="card-body">
                                 <div class="input-group mb-3">                        
                                     <input type="text" class="form-control" name="alumno" placeholder="Alumno" aria-label="Alumno" aria-describedby="basic-addon1" required>

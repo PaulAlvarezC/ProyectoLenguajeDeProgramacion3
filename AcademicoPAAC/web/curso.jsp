@@ -59,7 +59,7 @@
                         <div class="card-header">
                             Agregar Curso
                         </div>
-                        <form action="AgregarCurso" method="post">
+                        <form action="RegistrarCurso" method="post">
                             <div class="card-body">
                                 <div class="input-group mb-3">                        
                                     <input type="text" class="form-control" name="valor" placeholder="Valor" aria-label="Valor" aria-describedby="basic-addon1" required>
