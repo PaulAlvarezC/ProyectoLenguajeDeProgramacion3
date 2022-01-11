@@ -57,16 +57,10 @@
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-header">
-                                Agregar Materia
+                                Lista Alumnos
                             </div>
-                            <form action="RegistrarMateria" method="post">
+                            <form action="Controlador?accion=ListaAlumnosPorCurso" method="post">
                                 <div class="card-body">
-                                    <div class="input-group mb-3">                        
-                                        <input type="text" class="form-control" name="valor" placeholder="Valor" value="1" aria-label="Valor" aria-describedby="basic-addon1" hidden>
-                                    </div>
-                                    <div class="input-group mb-3">                        
-                                        <input type="text" class="form-control" name="descripcion" placeholder="Descripción" aria-label="Descripción" aria-describedby="basic-addon1" required>
-                                    </div>
                                     <select name="curso" class="form-select" aria-label="Default select example">
                                         <option selected>Seleccione el curso</option>
                                         <option value="1">1ero Básica</option>
@@ -81,12 +75,46 @@
                                         <option value="10">2do Bachillerato</option>
                                         <option value="11">3ero Bachillerato</option>
                                     </select>
-                                    <input type="submit" class="btn btn-primary" value="Agregar" style="margin-top: 10px"/>
+                                    <input type="submit" class="btn btn-info" value="Buscar" style="margin-top: 10px; color: white;"/>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </center>
+            </div>
+        </div>
+
+        <div class="container mt-2">
+            <div class="row">
+                <div class="card-header">
+                    Resultado Alumnos:
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cedula</th>
+                            <th scope="col">Alumno</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="p" items="${alumnosPorCurso}">
+                            <tr>
+                                <td>${p.getCedula()}</td>
+                                <td>${p.getNombres()}  ${p.getApellidos()}</td>
+                                <td>${p.getDireccion()}</td>
+                                <td>${p.getCurso()}</td>
+                                <td>
+                                    <a href="Controlador?accion=RegistrarNota&id=${p.getCedula()}&curso=${p.getCurso()}&nombres=${p.getNombres()}&apellidos=${p.getApellidos()}" class="btn btn-outline-success"><i class="fas fa-check"> Notas</i></a>
+                                    <a href="Controlador?accion=EditarAlumno&id=${p.getCedula()}&nombres=${p.getNombres()}&apellidos=${p.getApellidos()}&direccion=${p.getDireccion()}&curso=${p.getCurso()}" class="btn btn-outline-info"><i class="fas fa-edit"></i></a>
+                                    <a href="Controlador?accion=EliminarAlumno&id=${p.getCedula()}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
 

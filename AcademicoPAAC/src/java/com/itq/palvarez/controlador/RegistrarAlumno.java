@@ -43,9 +43,9 @@ public class RegistrarAlumno extends HttpServlet {
             HttpSession objsesion = request.getSession(true);
             String mensaje = "Alumno creado exitosamente!!!";
             objsesion.setAttribute("mensaje", mensaje);
-            response.sendRedirect("Controlador?accion=home");
+            response.sendRedirect("Controlador?accion=Success");
         }else {
-            response.sendRedirect("vistas/error.jsp");
+            response.sendRedirect("Controlador?accion=Error");
         }
     }
 

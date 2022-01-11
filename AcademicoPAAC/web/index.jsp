@@ -53,65 +53,59 @@
         </nav>
         <div class="container mt-2">
             <div class="row">
-                <div class="card" style="width: 30%; margin: 10px;">
+                <div class="card" style="width: 20%; margin: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">Agregar Alumno</h5>
                         <p class="card-text">Aquí puedes agregar o registrar Usuarios Estudiantes.</p>
                         <a href="Controlador?accion=AgregarAlumno" class="btn btn-primary">Ir</a>
                     </div>
                 </div>
-                <div class="card" style="width: 30%; margin: 10px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Agregar Curso</h5>
-                        <p class="card-text">Aquí puedes agregar o crear Cursos.</p>
-                        <a href="Controlador?accion=AgregarCurso" class="btn btn-primary">Ir</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 30%; margin: 10px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Agregar Materia</h5>
-                        <p class="card-text">Aquí puedes agregar o registrar Materias.</p>
-                        <a href="Controlador?accion=AgregarMateria" class="btn btn-primary">Ir</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 30%; margin: 10px;">
+                <div class="card" style="width: 20%; margin: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">Lista Alumnos</h5>
                         <p class="card-text">Aquí podras ver la lista de todos los Usuarios Estudiantes.</p>
                         <a href="Controlador?accion=ListaAlumnos" class="btn btn-primary">Ir</a>
                     </div>
                 </div>
-                
-                <div class="card" style="width: 30%; margin: 10px;">
+                <div class="card" style="width: 20%; margin: 10px;" hidden="">
+                    <div class="card-body">
+                        <h5 class="card-title">Agregar Curso</h5>
+                        <p class="card-text">Aquí puedes agregar o crear Cursos.</p>
+                        <a href="Controlador?accion=AgregarCurso" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 20%; margin: 10px;" hidden="">
                     <div class="card-body">
                         <h5 class="card-title">Lista Cursos</h5>
                         <p class="card-text">Aquí podras ver la lista de todos los Cursos.</p>
                         <a href="Controlador?accion=ListaCursos" class="btn btn-primary">Ir</a>
                     </div>
                 </div>
-                <div class="card" style="width: 30%; margin: 10px;">
+                
+                
+                <div class="card" style="width: 20%; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Agregar Materia</h5>
+                        <p class="card-text">Aquí puedes agregar o registrar Materias.</p>
+                        <a href="Controlador?accion=AgregarMateria" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>                               
+                <div class="card" style="width: 20%; margin: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">Lista Materias</h5>
                         <p class="card-text">Aquí podras ver la lista de todos las Materias.</p>
                         <a href="Controlador?accion=ListaMaterias" class="btn btn-primary">Ir</a>
                     </div>
                 </div>
-                <div class="card" style="width: 30%; margin: 10px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Registrar Notas</h5>
-                        <p class="card-text">Aquí podras registrar las notas de los Estudiantes.</p>
-                        <a href="Controlador?accion=AgregarNota" class="btn btn-primary">Ir</a>
-                    </div>
-                </div>
 
-                <div class="card" style="width: 30%; margin: 10px;">
+                <div class="card" style="width: 20%; margin: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">Lista de Notas</h5>
                         <p class="card-text">Aquí podras ver la lista de Notas por Alumno.</p>
                         <a href="Controlador?accion=ListaNotas" class="btn btn-primary">Ir</a>
                     </div>
                 </div>
-                <div class="card" style="width: 30%; margin: 10px;">
+                <div class="card" style="width: 42%; margin: 10px;">
                     <div class="card-body">
                         <h5 class="card-title">Agregar Usuario Sistema</h5>
                         <p class="card-text">Aquí podras ver registrar usuarios tipo Docentes al Sistema.</p>

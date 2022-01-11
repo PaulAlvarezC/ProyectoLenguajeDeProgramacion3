@@ -1,14 +1,14 @@
 <%-- 
-    Document   : alumno
-    Created on : 05/01/2022, 17:30:30
+    Document   : index
+    Created on : 02/01/2021, 17:30:30
     Author     : paul.alvarez
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% 
+<%
     HttpSession objsesion = request.getSession(false);
     String usuario = (String) objsesion.getAttribute("usuario");
-    if(usuario.equals("")){
+    if (usuario.equals("")) {
         usuario = "usuario";
     }
 %>
@@ -35,7 +35,7 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="Controlador?accion=Perfil"  style="color: white;">Bienvenido <% out.println(usuario); %></a>
+                            <a class="nav-link" href="Controlador?accion=Perfil"  style="color: white;">Bienvenido <% out.println(usuario);%></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="color: white;">
@@ -53,47 +53,17 @@
         </nav>
         <div class="container mt-2">
             <div class="row">
-                <center>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-header">
-                            Agregar Alumno
-                        </div>
-                        <form action="RegistrarAlumno" method="post">
-                            <div class="card-body">
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="cedula" placeholder="Cédula" aria-label="Cédula" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="nombres" placeholder="Nombres" aria-label="Nombres" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" aria-label="Apellidos" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="direccion" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1" required>
-                                </div>
-                                <select name="curso" class="form-select" aria-label="Default select example">
-                                    <option selected>Seleccione el curso</option>
-                                    <option value="1">1ero Básica</option>
-                                    <option value="2">2do Básica</option>
-                                    <option value="3">3ero Básica</option>
-                                    <option value="4">4to Básica</option>
-                                    <option value="5">5to Básica</option>
-                                    <option value="6">6to Básica</option>
-                                    <option value="7">7mo Básica</option>
-                                    <option value="8">8vo Básica</option>
-                                    <option value="9">1ero Bachillerato</option>
-                                    <option value="10">2do Bachillerato</option>
-                                    <option value="11">3ero Bachillerato</option>
-                                </select>
-                                <input type="submit" class="btn btn-info" value="Agregar" style="margin-top: 10px; color: white;"/>
-                            </div>
-                        </form>
-                    </div>
+                <div class="alert alert-success" role="alert">
+                    <center>
+                        <h4 class="alert-heading">
+                            Proceso realizado con éxito!!!
+                        </h4>
+                        <br>
+                        <a href="Controlador?accion=home" class="btn btn-success">Continuar</a>
+                    </center>
                 </div>
-            </center>
             </div>
+            <a></a>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>

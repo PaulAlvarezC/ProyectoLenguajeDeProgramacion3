@@ -5,7 +5,15 @@
  */
 package com.itq.palvarez.controlador;
 
+import com.itq.palvarez.modelo.Alumno;
+import com.itq.palvarez.modelo.Materia;
+import com.itq.palvarez.modelo.Notas;
+import com.itq.palvarez.modeloDAO.AlumnoDAO;
+import com.itq.palvarez.modeloDAO.MateriaDAO;
+import com.itq.palvarez.modeloDAO.NotasDAO;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +25,16 @@ import javax.servlet.http.HttpSession;
  * @author paul.alvarez
  */
 public class Controlador extends HttpServlet {
+    String cedula = null;
+    String nombres = null;
+    String apellidos = null;
+    String direccion = null;
+    String id = null;
+    String curso = null;
+
+    AlumnoDAO alumnoDao;
+    MateriaDAO materiaDao;
+    NotasDAO notasDao;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,32 +59,135 @@ public class Controlador extends HttpServlet {
             case "AgregarUsuario":
                 request.getRequestDispatcher("usuario.jsp").forward(request, response);
                 break;
-            case "AgregarAlumno":
-                request.getRequestDispatcher("alumno.jsp").forward(request, response);
-                break;
+            
+            //CURSOS
             case "AgregarCurso":
                 request.getRequestDispatcher("curso.jsp").forward(request, response);
                 break;
+
+            //MATERIAS
             case "AgregarMateria":
                 request.getRequestDispatcher("materia.jsp").forward(request, response);
                 break;
-            case "AgregarNota":
-                request.getRequestDispatcher("registrarNotas.jsp").forward(request, response);
+            case "ListaMateriasPorCurso":
+                curso = request.getParameter("curso");
+                System.out.println("SALIDA: " + curso);
+                List<Materia> materias = new ArrayList<>();
+                materiaDao = new MateriaDAO();
+                materias = materiaDao.listarMateriasPorCurso(curso);
+                request.setAttribute("materiasPorCurso", materias);
+                request.getRequestDispatcher("listaMaterias.jsp").forward(request, response);
                 break;
-            case "ListaAlumnos":
-                request.getRequestDispatcher("listaAlumnos.jsp").forward(request, response);
+            case "EditarMateria":
+                id = request.getParameter("id");
+                System.out.println("SALIDA: " + id);
+
                 break;
-            case "ListaCursos":
-                request.getRequestDispatcher("listaCursos.jsp").forward(request, response);
+            case "EliminarMateria":
+                id = request.getParameter("id");
+                System.out.println("SALIDA: " + id);
+                materiaDao = new MateriaDAO();
+                if(materiaDao.eliminarMateria(id)){
+                    request.getRequestDispatcher("success.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }
                 break;
             case "ListaMaterias":
                 request.getRequestDispatcher("listaMaterias.jsp").forward(request, response);
                 break;
+
+            //NOTAS
+            case "RegistrarNota":
+                cedula = request.getParameter("id");
+                System.out.println("SALIDA: " + cedula);
+                nombres = request.getParameter("nombres");
+                System.out.println("SALIDA: " + nombres);
+                apellidos = request.getParameter("apellidos");
+                System.out.println("SALIDA: " + apellidos);
+                curso = request.getParameter("curso");
+                System.out.println("SALIDA: " + curso);
+                request.setAttribute("cedulaAtt", cedula);
+                request.setAttribute("nombresAtt", nombres);
+                request.setAttribute("apellidosAtt", apellidos);
+                request.setAttribute("cursoAtt", curso);
+                
+                List<Materia> materiasLista = new ArrayList<>();
+                materiaDao = new MateriaDAO();
+                materiasLista = materiaDao.listarMateriasPorCurso(curso);
+                request.setAttribute("materiasLista", materiasLista);
+                request.getRequestDispatcher("registrarNotas.jsp").forward(request, response);
+                break;
             case "ListaNotas":
+                List<Alumno> alumnosLista = new ArrayList<>();
+                alumnoDao = new AlumnoDAO();
+                alumnosLista = alumnoDao.listarAlumnos();
+                request.setAttribute("alumnosLista", alumnosLista);
                 request.getRequestDispatcher("listaNotas.jsp").forward(request, response);
                 break;
+            case "ListaNotasPorAlumno":
+                cedula = request.getParameter("alumno");
+                System.out.println("SALIDA: " + cedula);
+
+                List<Notas> notas = new ArrayList<>();
+                notasDao = new NotasDAO();
+                notas = notasDao.listarNotasPorIdAlumno(cedula);
+                request.setAttribute("notasPorAlumno", notas);
+                request.getRequestDispatcher("listaNotas.jsp").forward(request, response);
+                break;
+
+
+            //ALUMNOS
+            case "AgregarAlumno":
+                request.getRequestDispatcher("alumno.jsp").forward(request, response);
+                break;
+            case "ListaAlumnos":
+                request.getRequestDispatcher("listaAlumnos.jsp").forward(request, response);
+                break;
+            case "ListaAlumnosPorCurso":
+                curso = request.getParameter("curso");
+                System.out.println("SALIDA: " + curso);
+                List<Alumno> alumnos = new ArrayList<>();
+                alumnoDao = new AlumnoDAO();
+                alumnos = alumnoDao.listarAlumnosPorCurso(curso);
+                request.setAttribute("alumnosPorCurso", alumnos);
+                request.getRequestDispatcher("listaAlumnos.jsp").forward(request, response);
+                break;
+            case "EditarAlumno":
+                cedula = request.getParameter("id");
+                nombres = request.getParameter("nombres");
+                apellidos = request.getParameter("apellidos");
+                direccion = request.getParameter("direccion");
+                curso = request.getParameter("curso");
+
+                System.out.println("SALIDA: " + cedula);
+                request.setAttribute("cedulaAlumno", cedula);
+                request.setAttribute("nombresAlumno", nombres);
+                request.setAttribute("apellidosAlumno", apellidos);
+                request.setAttribute("direccionAlumno", direccion);
+                request.setAttribute("cursoAlumno", curso);
+                request.getRequestDispatcher("editarAlumno.jsp").forward(request, response);
+                break;
+            case "EliminarAlumno":
+                cedula = request.getParameter("id");
+                System.out.println("SALIDA: " + cedula);
+                alumnoDao = new AlumnoDAO();
+                if(alumnoDao.eliminarAlumno(cedula)){
+                    request.getRequestDispatcher("success.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }
+                break;
+            
+            
             case "Perfil":
                 request.getRequestDispatcher("perfil.jsp").forward(request, response);
+                break;
+            case "Success":
+                request.getRequestDispatcher("success.jsp").forward(request, response);
+                break;
+            case "Error":
+                request.getRequestDispatcher("error.jsp").forward(request, response);
                 break;
             case "CerrarSesion":
                 HttpSession objsesion = request.getSession(true);

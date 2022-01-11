@@ -5,10 +5,12 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% 
+<%@page import="com.itq.palvarez.modelo.Materia"%>
+<%@page import="java.util.List"%>
+<%
     HttpSession objsesion = request.getSession(false);
     String usuario = (String) objsesion.getAttribute("usuario");
-    if(usuario.equals("")){
+    if (usuario.equals("")) {
         usuario = "usuario";
     }
 %>
@@ -35,7 +37,7 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="Controlador?accion=Perfil"  style="color: white;">Bienvenido <% out.println(usuario); %></a>
+                            <a class="nav-link" href="Controlador?accion=Perfil"  style="color: white;">Bienvenido <% out.println(usuario);%></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"  style="color: white;">
@@ -54,43 +56,49 @@
         <div class="container mt-2">
             <div class="row">
                 <center>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-header">
-                            Registrar Notas
-                        </div>
-                        <form action="RegistrarNotas" method="post">
-                            <div class="card-body">
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="alumno" placeholder="Alumno" aria-label="Alumno" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="curso" placeholder="Curso" aria-label="Curso" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="materia" placeholder="Materia" aria-label="Materia" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="nota1" placeholder="Nota1" aria-label="Nota1" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="nota2" placeholder="Nota2" aria-label="Nota2" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="nota3" placeholder="Nota3" aria-label="Nota3" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="promedio" placeholder="Promedio" aria-label="Promedio" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="observacion" placeholder="Observación" aria-label="Observación" aria-describedby="basic-addon1" required>
-                                </div>
-                                <input type="submit" class="btn btn-primary" value="Registrar"/>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header">
+                                Registrar Notas de Alumno: <strong>${nombresAtt}  ${apellidosAtt}</strong>
                             </div>
-                        </form>
+                            <form action="RegistrarNotas" method="post">
+                                <div class="card-body">
+                                    <div class="input-group mb-3">                        
+                                        <input type="text" class="form-control" name="alumno" placeholder="Alumno" value="${cedulaAtt}" aria-label="Alumno" aria-describedby="basic-addon1" readonly>
+                                    </div>
+                                    <div class="input-group mb-3">                        
+                                        <input type="text" class="form-control" name="curso" placeholder="Curso" value="${cursoAtt}" aria-label="Curso" aria-describedby="basic-addon1" readonly>
+                                    </div>
+                                    <select class="form-select" id="materia" name="materia">
+                                        <option selected>Seleccione la Materia</option>
+                                        <% List<Materia> listaMaterias = (List<Materia>) request.getAttribute("materiasLista");
+                                            if (listaMaterias != null)
+                                                for (Materia mat : listaMaterias) {%>
+                                        <option value="<%=mat.getDescripcion()%>"><%=mat.getDescripcion()%></option>
+                                        <%}%>
+                                    </select>
+                                    <br>
+                                    <div class="input-group mb-3">                        
+                                        <input type="text" class="form-control" name="nota1" placeholder="Nota1" aria-label="Nota1" aria-describedby="basic-addon1" required>
+                                    </div>
+                                    <div class="input-group mb-3">                        
+                                        <input type="text" class="form-control" name="nota2" placeholder="Nota2" aria-label="Nota2" aria-describedby="basic-addon1" required>
+                                    </div>
+                                    <div class="input-group mb-3">                        
+                                        <input type="text" class="form-control" name="nota3" placeholder="Nota3" aria-label="Nota3" aria-describedby="basic-addon1" required>
+                                    </div>
+                                    <div class="input-group mb-3">                        
+                                        <input type="text" class="form-control" name="promedio" placeholder="Promedio" aria-label="Promedio" aria-describedby="basic-addon1" hidden>
+                                    </div>
+                                    <div class="input-group mb-3">                        
+                                        <input type="text" class="form-control" name="observaciones" placeholder="Observaciones" aria-label="Observaciones" aria-describedby="basic-addon1" required>
+                                    </div>
+                                    <input type="submit" class="btn btn-info" value="Registrar"/>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </center>
+                </center>
             </div>
         </div>
 

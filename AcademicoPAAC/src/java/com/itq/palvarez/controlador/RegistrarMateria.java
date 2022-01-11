@@ -41,9 +41,9 @@ public class RegistrarMateria extends HttpServlet {
             HttpSession objsesion = request.getSession(true);
             String mensaje = "Materia creada exitosamente!!!";
             objsesion.setAttribute("mensaje", mensaje);
-            response.sendRedirect("Controlador?accion=home");
+            response.sendRedirect("Controlador?accion=Success");
         }else {
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("Controlador?accion=Error");
         }
     }
 

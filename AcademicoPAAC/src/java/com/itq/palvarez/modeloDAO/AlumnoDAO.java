@@ -58,10 +58,10 @@ public class AlumnoDAO {
                 Alumno p = new Alumno();
                 p.setId(rs.getInt(1));
                 p.setCedula(rs.getString(2));
-                p.setNombres(rs.getString(2));
-                p.setApellidos(rs.getString(3));
-                p.setDireccion(rs.getString(4));
-                p.setCurso(rs.getInt(5));
+                p.setNombres(rs.getString(3));
+                p.setApellidos(rs.getString(4));
+                p.setDireccion(rs.getString(5));
+                p.setCurso(rs.getInt(6));
                 alumnos.add(p);
             }
         } catch (SQLException e) {
@@ -99,6 +99,77 @@ public class AlumnoDAO {
                 System.err.println("FINALLY ERROR: " + e);
             }
         }        
+        return false;
+    }
+
+    public boolean editarAlumno(String cedula, String nombres, String apellidos, String direccion, int curso) {
+        PreparedStatement pst = null;
+        
+        try {
+            String sql = "update alumno set nombres = " + nombres + " , apellidos=" + apellidos + " , direccion=" + direccion + " WHERE cedula="+cedula;
+            pst = getConnection().prepareStatement(sql);
+            pst.setString(1, cedula);
+            pst.setString(2, nombres);
+            pst.setString(3, apellidos);
+            pst.setString(4, direccion);
+            pst.setInt(5, curso);
+            
+            if (pst.executeUpdate() == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("FINALLY ERROR: " + e);
+            }
+        }        
+        return false;
+    }
+
+    public List listarAlumnosPorCurso(String curso) {
+        List<Alumno> alumnos = new ArrayList();
+        String sql = "select * from alumno where curso=" + curso;
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Alumno c = new Alumno();
+                c.setId(rs.getInt(1));
+                c.setCedula(rs.getString(2));
+                c.setNombres(rs.getString(3));
+                c.setApellidos(rs.getString(4));
+                c.setDireccion(rs.getString(5));
+                c.setCurso(rs.getInt(6));
+                alumnos.add(c);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        return alumnos;
+    }
+
+    public boolean eliminarAlumno(String cedula) {
+        String sql = "delete from alumno where cedula=" + cedula;
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
         return false;
     }
 }

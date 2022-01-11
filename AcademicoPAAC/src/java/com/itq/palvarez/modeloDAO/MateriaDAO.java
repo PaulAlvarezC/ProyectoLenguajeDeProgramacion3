@@ -7,6 +7,7 @@ package com.itq.palvarez.modeloDAO;
 
 import com.itq.palvarez.config.Conexion;
 import static com.itq.palvarez.config.Conexion.getConnection;
+import com.itq.palvarez.modelo.Alumno;
 import com.itq.palvarez.modelo.Materia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -74,6 +75,43 @@ public class MateriaDAO {
                 System.err.println("FINALLY ERROR: " + e);
             }
         }        
+        return false;
+    }
+
+    public List listarMateriasPorCurso(String curso) {
+        List<Materia> materias = new ArrayList();
+        String sql = "select * from materia where curso=" + curso;
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Materia c = new Materia();
+                c.setId(rs.getInt(1));
+                c.setValor(rs.getString(2));
+                c.setDescripcion(rs.getString(3));
+                c.setCurso(rs.getInt(4));
+                materias.add(c);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        return materias;
+    }
+
+    public boolean eliminarMateria(String id) {
+        String sql = "delete from materia where idMateria=" + id;
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
         return false;
     }
 }

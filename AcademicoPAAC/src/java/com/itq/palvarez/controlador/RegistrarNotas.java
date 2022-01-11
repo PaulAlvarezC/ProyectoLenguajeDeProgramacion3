@@ -5,11 +5,13 @@
  */
 package com.itq.palvarez.controlador;
 
+import com.itq.palvarez.modeloDAO.NotasDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,14 +41,17 @@ public class RegistrarNotas extends HttpServlet {
         
         System.out.println("SALIDA: " + alumno + " " + curso + " " + materia + " " + nota1 + " " + nota2 + " " + nota3 + " " + promedio + " " + observaciones);
         
-        /*Autenticacion login = new Autenticacion();
-        if(login.registrar(cedula, nombres, apellidos, usuario, password)){
+        float promedioFinal = (Float.parseFloat(nota1) + Float.parseFloat(nota2) + Float.parseFloat(nota3)) / 3;
+
+        NotasDAO notasDao = new NotasDAO();
+        if(notasDao.registrarNota(alumno, Integer.parseInt(curso), materia, Float.parseFloat(nota1), Float.parseFloat(nota2), Float.parseFloat(nota3), promedioFinal, observaciones)){
             HttpSession objsesion = request.getSession(true);
-            objsesion.setAttribute("usuario", usuario);
-            response.sendRedirect("Controlador?accion=home");
+            String mensaje = "Notas registradas exitosamente!!!";
+            objsesion.setAttribute("mensaje", mensaje);
+            response.sendRedirect("Controlador?accion=Success");
         }else {
-            response.sendRedirect("vistas/error.jsp");
-        }*/
+            response.sendRedirect("Controlador?accion=Error");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

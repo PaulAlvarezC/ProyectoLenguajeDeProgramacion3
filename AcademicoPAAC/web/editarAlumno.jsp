@@ -57,37 +57,26 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-header">
-                            Agregar Alumno
+                            Editar Alumno
                         </div>
-                        <form action="RegistrarAlumno" method="post">
+                        <form action="EditarAlumnoServlet" method="post">
                             <div class="card-body">
                                 <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="cedula" placeholder="Cédula" aria-label="Cédula" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control" name="cedula" value="${cedulaAlumno}" placeholder="Cédula" aria-label="Cédula" aria-describedby="basic-addon1" readonly>
                                 </div>
                                 <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="nombres" placeholder="Nombres" aria-label="Nombres" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control" name="nombres" value="${nombresAlumno}" placeholder="Nombres" aria-label="Nombres" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" aria-label="Apellidos" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control" name="apellidos" value="${apellidosAlumno}" placeholder="Apellidos" aria-label="Apellidos" aria-describedby="basic-addon1" required>
                                 </div>
                                 <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="direccion" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control" name="direccion" value="${direccionAlumno}" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1" required>
                                 </div>
-                                <select name="curso" class="form-select" aria-label="Default select example">
-                                    <option selected>Seleccione el curso</option>
-                                    <option value="1">1ero Básica</option>
-                                    <option value="2">2do Básica</option>
-                                    <option value="3">3ero Básica</option>
-                                    <option value="4">4to Básica</option>
-                                    <option value="5">5to Básica</option>
-                                    <option value="6">6to Básica</option>
-                                    <option value="7">7mo Básica</option>
-                                    <option value="8">8vo Básica</option>
-                                    <option value="9">1ero Bachillerato</option>
-                                    <option value="10">2do Bachillerato</option>
-                                    <option value="11">3ero Bachillerato</option>
-                                </select>
-                                <input type="submit" class="btn btn-info" value="Agregar" style="margin-top: 10px; color: white;"/>
+                                <div class="input-group mb-3">                        
+                                    <input type="text" class="form-control" name="curso" value="${cursoAlumno}" placeholder="Curso" aria-label="Curso" aria-describedby="basic-addon1" readonly>
+                                </div>
+                                <input type="submit" class="btn btn-info" value="Editar" style="margin-top: 10px; color: white;"/>
                             </div>
                         </form>
                     </div>
