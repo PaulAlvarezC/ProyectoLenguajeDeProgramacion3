@@ -110,8 +110,8 @@
                                 <td>${p.getPromedio()}</td>
                                 <td>${p.getObservaciones()}</td>
                                 <td>
-                                    <a href="Controlador?accion=EditarNota&id=${p.getId()}" class="btn btn-outline-info"><i class="fas fa-edit"></i></a>
-                                    <a href="Controlador?accion=EliminarNota&id=${p.getId()}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                    <a href="Controlador?accion=EditarNotas&id=${p.getId()}&nota1=${p.getNota1()}&nota2=${p.getNota2()}&nota3=${p.getNota3()}&promedio=${p.getPromedio()}&observaciones=${p.getObservaciones()}" class="btn btn-outline-info"><i class="fas fa-edit"></i></a>
+                                    <a href="Controlador?accion=EliminarNotas&id=${p.getId()}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>

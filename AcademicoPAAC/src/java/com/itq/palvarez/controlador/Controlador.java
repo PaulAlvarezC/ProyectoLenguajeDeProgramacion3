@@ -25,16 +25,23 @@ import javax.servlet.http.HttpSession;
  * @author paul.alvarez
  */
 public class Controlador extends HttpServlet {
+
     String cedula = null;
     String nombres = null;
     String apellidos = null;
     String direccion = null;
     String id = null;
     String curso = null;
+    float n1;
+    float n2;
+    float n3;
+    float promedio;
+    String observaciones = null;
 
     AlumnoDAO alumnoDao;
     MateriaDAO materiaDao;
     NotasDAO notasDao;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,7 +56,7 @@ public class Controlador extends HttpServlet {
         String accion = request.getParameter("accion");
         //productos = pdao.listar();
         switch (accion) {
-            
+
             case "Login":
                 request.getRequestDispatcher("login.jsp").forward(request, response);
                 break;
@@ -59,7 +66,7 @@ public class Controlador extends HttpServlet {
             case "AgregarUsuario":
                 request.getRequestDispatcher("usuario.jsp").forward(request, response);
                 break;
-            
+
             //CURSOS
             case "AgregarCurso":
                 request.getRequestDispatcher("curso.jsp").forward(request, response);
@@ -87,7 +94,7 @@ public class Controlador extends HttpServlet {
                 id = request.getParameter("id");
                 System.out.println("SALIDA: " + id);
                 materiaDao = new MateriaDAO();
-                if(materiaDao.eliminarMateria(id)){
+                if (materiaDao.eliminarMateria(id)) {
                     request.getRequestDispatcher("success.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -111,7 +118,7 @@ public class Controlador extends HttpServlet {
                 request.setAttribute("nombresAtt", nombres);
                 request.setAttribute("apellidosAtt", apellidos);
                 request.setAttribute("cursoAtt", curso);
-                
+
                 List<Materia> materiasLista = new ArrayList<>();
                 materiaDao = new MateriaDAO();
                 materiasLista = materiaDao.listarMateriasPorCurso(curso);
@@ -135,7 +142,31 @@ public class Controlador extends HttpServlet {
                 request.setAttribute("notasPorAlumno", notas);
                 request.getRequestDispatcher("listaNotas.jsp").forward(request, response);
                 break;
+            case "EditarNotas":
+                id = request.getParameter("id");
+                n1 = Float.parseFloat(request.getParameter("nota1"));
+                n2 = Float.parseFloat(request.getParameter("nota2"));
+                n3 = Float.parseFloat(request.getParameter("nota3"));
+                observaciones = request.getParameter("observaciones");
 
+                System.out.println("SALIDA: " + id);
+                request.setAttribute("idNotas", Integer.parseInt(id));
+                request.setAttribute("n1", n1);
+                request.setAttribute("n2", n2);
+                request.setAttribute("n3", n3);
+                request.setAttribute("observaciones", observaciones);
+                request.getRequestDispatcher("editarNotas.jsp").forward(request, response);
+                break;
+            case "EliminarNotas":
+                id = request.getParameter("id");
+                System.out.println("SALIDA: " + id);
+                notasDao = new NotasDAO();
+                if (notasDao.eliminarNotas(Integer.parseInt(id))) {
+                    request.getRequestDispatcher("success.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }
+                break;
 
             //ALUMNOS
             case "AgregarAlumno":
@@ -172,14 +203,13 @@ public class Controlador extends HttpServlet {
                 cedula = request.getParameter("id");
                 System.out.println("SALIDA: " + cedula);
                 alumnoDao = new AlumnoDAO();
-                if(alumnoDao.eliminarAlumno(cedula)){
+                if (alumnoDao.eliminarAlumno(cedula)) {
                     request.getRequestDispatcher("success.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
                 break;
-            
-            
+
             case "Perfil":
                 request.getRequestDispatcher("perfil.jsp").forward(request, response);
                 break;

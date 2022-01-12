@@ -5,7 +5,7 @@
  */
 package com.itq.palvarez.controlador;
 
-import com.itq.palvarez.modeloDAO.AlumnoDAO;
+import com.itq.palvarez.modeloDAO.NotasDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author paul.alvarez
  */
-public class EditarAlumnoServlet extends HttpServlet {
+public class EditarNotasServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,14 +30,16 @@ public class EditarAlumnoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
-        String nombres = request.getParameter("nombres");
-        String apellidos = request.getParameter("apellidos");
-        String direccion = request.getParameter("direccion");
+        String nota1 = request.getParameter("nota1");
+        String nota2 = request.getParameter("nota2");
+        String nota3 = request.getParameter("nota3");
+        String observaciones = request.getParameter("observaciones");
+        float prom = Float.parseFloat(request.getParameter("nota1")) + Float.parseFloat(request.getParameter("nota2")) + Float.parseFloat(request.getParameter("nota3"));
         
-        System.out.println("SALIDA: " + id + " " + nombres + " " + apellidos + " " + direccion);
+        System.out.println("SALIDA: " + id + " " + nota1 + " " + nota2 + " " + nota3);
         
-        AlumnoDAO alumno = new AlumnoDAO();
-        if(alumno.editarAlumno(nombres, apellidos, direccion, Integer.parseInt(id))){
+        NotasDAO notaDao = new NotasDAO();
+        if(notaDao.editarNotas(Float.parseFloat(nota1), Float.parseFloat(nota2), Float.parseFloat(nota3), prom/3, observaciones, Integer.parseInt(id))){
             response.sendRedirect("Controlador?accion=Success");
         }else {
             response.sendRedirect("Controlador?accion=Error");

@@ -19,16 +19,16 @@ import java.util.List;
  * @author paul.alvarez
  */
 public class NotasDAO {
+
     Connection con;
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
 
-
     public List listarNotasPorIdAlumno(String cedula) {
         List<Notas> notas = new ArrayList();
         String sql = "select * from notas where alumno=" + cedula;
-        
+
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -51,10 +51,10 @@ public class NotasDAO {
         }
         return notas;
     }
-    
+
     public boolean registrarNota(String alumno, int curso, String materia, float nota1, float nota2, float nota3, float promedio, String observaciones) {
         PreparedStatement pst = null;
-        
+
         try {
             String sql = "insert into notas (alumno, curso, materia, nota1, nota2, nota3, promedio, observaciones)values(?,?,?,?,?,?,?,?)";
             pst = getConnection().prepareStatement(sql);
@@ -66,7 +66,7 @@ public class NotasDAO {
             pst.setFloat(6, nota3);
             pst.setFloat(7, promedio);
             pst.setString(8, observaciones);
-            
+
             if (pst.executeUpdate() == 1) {
                 return true;
             }
@@ -83,7 +83,55 @@ public class NotasDAO {
             } catch (SQLException e) {
                 System.err.println("FINALLY ERROR: " + e);
             }
-        }        
+        }
+        return false;
+    }
+
+    public boolean eliminarNotas(int id) {
+        String sql = "delete from notas where idNotas=" + id;
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e);
+        }
+        return false;
+    }
+
+    public boolean editarNotas(float n1, float n2, float n3, float prom, String observaciones, int id) {
+        PreparedStatement pst = null;
+
+        try {
+            String sql = "update notas set nota1=?, nota2=?, nota3=?, promedio=?, observaciones=? WHERE idNotas=?";
+            pst = getConnection().prepareStatement(sql);
+            pst.setFloat(1, n1);
+            pst.setFloat(2, n2);
+            pst.setFloat(3, n3);
+            pst.setFloat(4, prom);
+            pst.setString(5, observaciones);
+            pst.setInt(6, id);
+
+            if (pst.executeUpdate() == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("ERROR: " + e);
+        } finally {
+            try {
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("FINALLY ERROR: " + e);
+            }
+        }
         return false;
     }
 }

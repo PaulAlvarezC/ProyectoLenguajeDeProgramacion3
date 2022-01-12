@@ -21,6 +21,10 @@
         <servlet-class>com.itq.palvarez.controlador.EditarAlumnoServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EditarNotasServlet</servlet-name>
+        <servlet-class>com.itq.palvarez.controlador.EditarNotasServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RegistrarCurso</servlet-name>
         <servlet-class>com.itq.palvarez.controlador.RegistrarCurso</servlet-class>
     </servlet>
@@ -51,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>EditarAlumnoServlet</servlet-name>
         <url-pattern>/EditarAlumnoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarNotasServlet</servlet-name>
+        <url-pattern>/EditarNotasServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegistrarCurso</servlet-name>
