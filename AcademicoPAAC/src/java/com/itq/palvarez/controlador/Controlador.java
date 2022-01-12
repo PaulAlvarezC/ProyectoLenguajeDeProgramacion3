@@ -154,14 +154,14 @@ public class Controlador extends HttpServlet {
                 request.getRequestDispatcher("listaAlumnos.jsp").forward(request, response);
                 break;
             case "EditarAlumno":
-                cedula = request.getParameter("id");
+                id = request.getParameter("id");
                 nombres = request.getParameter("nombres");
                 apellidos = request.getParameter("apellidos");
                 direccion = request.getParameter("direccion");
                 curso = request.getParameter("curso");
 
-                System.out.println("SALIDA: " + cedula);
-                request.setAttribute("cedulaAlumno", cedula);
+                System.out.println("SALIDA: " + id);
+                request.setAttribute("idAlumno", Integer.parseInt(id));
                 request.setAttribute("nombresAlumno", nombres);
                 request.setAttribute("apellidosAlumno", apellidos);
                 request.setAttribute("direccionAlumno", direccion);

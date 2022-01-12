@@ -102,17 +102,16 @@ public class AlumnoDAO {
         return false;
     }
 
-    public boolean editarAlumno(String cedula, String nombres, String apellidos, String direccion, int curso) {
+    public boolean editarAlumno(String nombres, String apellidos, String direccion, int id) {
         PreparedStatement pst = null;
         
         try {
-            String sql = "update alumno set nombres = " + nombres + " , apellidos=" + apellidos + " , direccion=" + direccion + " WHERE cedula="+cedula;
-            pst = getConnection().prepareStatement(sql);
-            pst.setString(1, cedula);
-            pst.setString(2, nombres);
-            pst.setString(3, apellidos);
-            pst.setString(4, direccion);
-            pst.setInt(5, curso);
+            String sql = "update alumno set nombres = ?, apellidos=?, direccion=? WHERE idAlumno=?";
+            pst = getConnection().prepareStatement(sql);            
+            pst.setString(1, nombres);            
+            pst.setString(2, apellidos);
+            pst.setString(3, direccion);
+            pst.setInt(4, id);
             
             if (pst.executeUpdate() == 1) {
                 return true;

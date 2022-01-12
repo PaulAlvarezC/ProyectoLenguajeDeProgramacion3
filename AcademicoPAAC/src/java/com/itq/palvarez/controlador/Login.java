@@ -7,6 +7,8 @@ package com.itq.palvarez.controlador;
 
 import com.itq.palvarez.config.Autenticacion;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,17 +32,30 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usuario = request.getParameter("usuario");
-        String password = request.getParameter("password");
-        
-        System.out.println("SALIDA: " + usuario + " " + password);
-        Autenticacion login = new Autenticacion();
-        if(login.autenticacion(usuario, password)){
-            HttpSession objsesion = request.getSession(true);
-            objsesion.setAttribute("usuario", usuario);
-            response.sendRedirect("Controlador?accion=home");
-        }else {
-            response.sendRedirect("vistas/error.jsp");
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            String usuario = request.getParameter("usuario");
+            String password = request.getParameter("password");
+
+            m.reset();
+            m.update(password.getBytes());
+            byte[] digest = m.digest();
+            BigInteger bigInt = new BigInteger(1, digest);
+            String hashtext = bigInt.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            System.out.println("SALIDA: " + usuario + " " + hashtext);
+            Autenticacion login = new Autenticacion();
+            if (login.autenticacion(usuario, hashtext)) {
+                HttpSession objsesion = request.getSession(true);
+                objsesion.setAttribute("usuario", usuario);
+                response.sendRedirect("Controlador?accion=home");
+            } else {
+                response.sendRedirect("vistas/error.jsp");
+            }
+        } catch (Exception e) {
+            //TODO: handle exception
         }
     }
 

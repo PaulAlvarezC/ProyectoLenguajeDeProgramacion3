@@ -92,7 +92,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Cedula</th>
+                            <th scope="col">Id - Cédula</th>
                             <th scope="col">Alumno</th>
                             <th scope="col">Direccion</th>
                             <th scope="col">Curso</th>
@@ -102,13 +102,13 @@
                     <tbody>
                         <c:forEach var="p" items="${alumnosPorCurso}">
                             <tr>
-                                <td>${p.getCedula()}</td>
+                                <td># ${p.getId()} - ${p.getCedula()}</td>
                                 <td>${p.getNombres()}  ${p.getApellidos()}</td>
                                 <td>${p.getDireccion()}</td>
                                 <td>${p.getCurso()}</td>
                                 <td>
                                     <a href="Controlador?accion=RegistrarNota&id=${p.getCedula()}&curso=${p.getCurso()}&nombres=${p.getNombres()}&apellidos=${p.getApellidos()}" class="btn btn-outline-success"><i class="fas fa-check"> Notas</i></a>
-                                    <a href="Controlador?accion=EditarAlumno&id=${p.getCedula()}&nombres=${p.getNombres()}&apellidos=${p.getApellidos()}&direccion=${p.getDireccion()}&curso=${p.getCurso()}" class="btn btn-outline-info"><i class="fas fa-edit"></i></a>
+                                    <a href="Controlador?accion=EditarAlumno&id=${p.getId()}&nombres=${p.getNombres()}&apellidos=${p.getApellidos()}&direccion=${p.getDireccion()}&curso=${p.getCurso()}" class="btn btn-outline-info"><i class="fas fa-edit"></i></a>
                                     <a href="Controlador?accion=EliminarAlumno&id=${p.getCedula()}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>

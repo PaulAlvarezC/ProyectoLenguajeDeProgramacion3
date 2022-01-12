@@ -30,16 +30,15 @@ public class EditarAlumnoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cedula = request.getParameter("cedula");
+        String id = request.getParameter("id");
         String nombres = request.getParameter("nombres");
         String apellidos = request.getParameter("apellidos");
         String direccion = request.getParameter("direccion");
-        String curso = request.getParameter("curso");
         
-        System.out.println("SALIDA: " + cedula + " " + nombres + " " + apellidos + " " + direccion + " " + curso);
+        System.out.println("SALIDA: " + id + " " + nombres + " " + apellidos + " " + direccion);
         
         AlumnoDAO alumno = new AlumnoDAO();
-        if(alumno.editarAlumno(cedula, nombres, apellidos, direccion, Integer.parseInt(curso))){
+        if(alumno.editarAlumno(nombres, apellidos, direccion, Integer.parseInt(id))){
             HttpSession objsesion = request.getSession(true);
             String mensaje = "Alumno creado exitosamente!!!";
             objsesion.setAttribute("mensaje", mensaje);

@@ -62,7 +62,7 @@
                         <form action="EditarAlumnoServlet" method="post">
                             <div class="card-body">
                                 <div class="input-group mb-3">                        
-                                    <input type="text" class="form-control" name="cedula" value="${cedulaAlumno}" placeholder="Cédula" aria-label="Cédula" aria-describedby="basic-addon1" readonly>
+                                    <input type="text" class="form-control" name="id" value="${idAlumno}" placeholder="Id" aria-label="Id" aria-describedby="basic-addon1" readonly>
                                 </div>
                                 <div class="input-group mb-3">                        
                                     <input type="text" class="form-control" name="nombres" value="${nombresAlumno}" placeholder="Nombres" aria-label="Nombres" aria-describedby="basic-addon1" required>

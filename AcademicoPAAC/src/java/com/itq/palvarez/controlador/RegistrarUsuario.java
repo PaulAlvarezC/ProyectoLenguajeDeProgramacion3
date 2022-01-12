@@ -7,6 +7,8 @@ package com.itq.palvarez.controlador;
 
 import com.itq.palvarez.config.Autenticacion;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,22 +32,35 @@ public class RegistrarUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String cedula = request.getParameter("cedula");
-        String nombres = request.getParameter("nombres");
-        String apellidos = request.getParameter("apellidos");
-        String usuario = request.getParameter("usuario");
-        String password = request.getParameter("password");
-        
-        System.out.println("SALIDA: " + cedula + " " + nombres + " " + apellidos + " " + usuario + " " + password);
-        
-        Autenticacion login = new Autenticacion();
-        if(login.registrar(cedula, nombres, apellidos, usuario, password)){
-            HttpSession objsesion = request.getSession(true);
-            objsesion.setAttribute("usuario", usuario);
-            response.sendRedirect("Controlador?accion=Success");
-        }else {
-            response.sendRedirect("Controlador?accion=Error");
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            String cedula = request.getParameter("cedula");
+            String nombres = request.getParameter("nombres");
+            String apellidos = request.getParameter("apellidos");
+            String usuario = request.getParameter("usuario");
+            String password = request.getParameter("password");
+
+            m.reset();
+            m.update(password.getBytes());
+            byte[] digest = m.digest();
+            BigInteger bigInt = new BigInteger(1, digest);
+            String hashtext = bigInt.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            System.out.println("SALIDA: " + cedula + " " + nombres + " " + apellidos + " " + usuario + " " + hashtext);
+            Autenticacion login = new Autenticacion();
+            if (login.registrar(cedula, nombres, apellidos, usuario, hashtext)) {
+                HttpSession objsesion = request.getSession(true);
+                objsesion.setAttribute("usuario", usuario);
+                response.sendRedirect("Controlador?accion=Success");
+            } else {
+                response.sendRedirect("Controlador?accion=Error");
+            }
+        } catch (Exception e) {
+
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
